@@ -1,71 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Access Portal</title>
-  <style>
-    /* Basic cyberpunk terminal style */
-    :root {
-      --bg: #020202;
-      --neon: #39ff14; /* original green */
-      --accent: #00ffd0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Access Portal</title>
+<style>
+  /* VTuber Neon Color Palette */
+  :root {
+    --bg: #020202;
+    --primary: #FF00FF; /* Neon Magenta */
+    --accent1: #39FF14; /* Neon Green */
+    --accent2: #00FFFF; /* Neon Blue */
+    --accent3: #9B30FF; /* Neon Purple */
+  }
 
-    body {
-      margin: 0;
-      font-family: 'Share Tech Mono', monospace;
-      background-color: var(--bg);
-      color: var(--neon);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-    }
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    font-family: 'Share Tech Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: var(--primary);
+    overflow: hidden;
+  }
 
-    h1 {
-      font-size: 2em;
-      margin-bottom: 1em;
-    }
+  h1 {
+    font-size: 3em;
+    color: var(--primary);
+    margin-bottom: 2rem;
+    text-shadow:
+      0 0 5px var(--primary),
+      0 0 10px var(--primary),
+      0 0 20px var(--accent1),
+      0 0 40px var(--accent2);
+    animation: glitch 2s infinite;
+  }
 
-    button {
-      padding: 1em 2em;
-      font-size: 1.2em;
-      color: var(--bg);
-      background-color: var(--neon);
-      border: none;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+  @keyframes glitch {
+    0% { text-shadow: 2px 0 var(--accent1), -2px 0 var(--accent2); }
+    25% { text-shadow: -2px 0 var(--accent3), 2px 0 var(--primary); }
+    50% { text-shadow: 2px 2px var(--accent2), -2px -2px var(--accent1); }
+    75% { text-shadow: -2px -2px var(--accent3), 2px 2px var(--primary); }
+    100% { text-shadow: 2px 0 var(--accent1), -2px 0 var(--accent2); }
+  }
 
-    button:hover {
-      background-color: var(--accent);
-      color: var(--bg);
-    }
-  </style>
+  .enter-btn {
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+    color: var(--bg);
+    background-color: var(--primary);
+    border: 2px solid var(--accent1);
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow:
+      0 0 10px var(--primary),
+      0 0 20px var(--accent2),
+      0 0 30px var(--accent3);
+    transition: 0.3s;
+    position: relative;
+    animation: flicker 1.5s infinite alternate;
+  }
+
+  /* Flicker effect */
+  @keyframes flicker {
+    0% { opacity: 1; box-shadow: 0 0 10px var(--primary); }
+    20% { opacity: 0.8; box-shadow: 0 0 15px var(--accent1); }
+    40% { opacity: 1; box-shadow: 0 0 20px var(--accent2); }
+    60% { opacity: 0.9; box-shadow: 0 0 25px var(--accent3); }
+    80% { opacity: 1; box-shadow: 0 0 20px var(--accent2); }
+    100% { opacity: 1; box-shadow: 0 0 10px var(--primary); }
+  }
+
+  .enter-btn:hover {
+    color: var(--primary);
+    background-color: var(--bg);
+    animation: glitchBtn 0.8s infinite, flicker 1.5s infinite alternate;
+  }
+
+  @keyframes glitchBtn {
+    0% { transform: translate(0); border-color: var(--accent1); }
+    25% { transform: translate(-2px, 2px); border-color: var(--accent2); }
+    50% { transform: translate(2px, -2px); border-color: var(--accent3); }
+    75% { transform: translate(-2px, -2px); border-color: var(--accent1); }
+    100% { transform: translate(0); border-color: var(--accent2); }
+  }
+
+</style>
 </head>
 <body>
-  <h1>ACCESS PORTAL</h1>
-  <p>Welcome, Operator. Click ENTER to continue.</p>
-  <button id="enterButton">ENTER</button>
 
-  <script>
-    const CARRD_URL = "https://teikkuvt.carrd.co/";
-    const AUTO_ENTER_SECONDS = 6;
+<h1>ACCESS GATEWAY</h1>
+<button class="enter-btn" onclick="enterPortal()">ENTER</button>
 
-    const btn = document.getElementById("enterButton");
+<script>
+  // Redirect destination
+  const CARRD_URL = "https://teikkuvt.carrd.co/";
+  const AUTO_ENTER_SECONDS = 6;
 
-    btn.addEventListener("click", () => {
-      window.location.href = CARRD_URL;
-    });
+  function enterPortal() {
+    window.location.href = CARRD_URL;
+  }
 
-    if (AUTO_ENTER_SECONDS > 0) {
-      setTimeout(() => {
-        window.location.href = CARRD_URL;
-      }, AUTO_ENTER_SECONDS * 1000);
-    }
-  </script>
+  // Auto redirect after countdown
+  if (AUTO_ENTER_SECONDS > 0) {
+    setTimeout(enterPortal, AUTO_ENTER_SECONDS * 1000);
+  }
+</script>
+
 </body>
 </html>
