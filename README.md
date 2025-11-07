@@ -50,6 +50,13 @@ Developer: @Twa1993
 Font: Share Tech Mono
 Hosting: GitHub Pages
 
+🔗 LINKS
+
+Portal live
+Carrd site
+
+⚡ Neon vibes activated. Proceed with caution. 🕶️
+
 SYSTEM SHUTDOWN INITIATED...
 Transmission End.
 [Connection Terminated]
