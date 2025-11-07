@@ -8,8 +8,10 @@
 <style>
 :root{
   --bg:#020202;
-  --neon:#39ff14;
-  --accent:#00ffd0;
+  --neon:#FF00FF; /* neon magenta */
+  --accent:#00FF00; /* neon green */
+  --alt1:#00FFFF; /* neon blue */
+  --alt2:#9900FF; /* neon purple */
 }
 html,body{
   height:100%;
@@ -30,10 +32,10 @@ html,body{
 }
 .terminal {
   width:min(880px,92%);
-  border:2px solid rgba(57,255,20,0.12);
+  border:2px solid rgba(255,0,255,0.12);
   background:rgba(0,0,0,0.55);
   padding:28px;
-  box-shadow:0 12px 40px rgba(0,0,0,0.6), inset 0 0 40px rgba(57,255,20,0.03);
+  box-shadow:0 12px 40px rgba(0,0,0,0.6), inset 0 0 40px rgba(255,0,255,0.03);
   border-radius:6px;
 }
 .title {
@@ -44,7 +46,7 @@ html,body{
 }
 .lines {
   text-align:left;
-  color:#7AFF7A;
+  color:#FF77FF;
   line-height:1.35;
   font-size:15px;
   max-height:160px;
@@ -56,14 +58,14 @@ html,body{
   padding:14px 26px;
   font-size:20px;
   color:var(--bg);
-  background:linear-gradient(90deg,var(--neon),var(--accent));
+  background:linear-gradient(90deg,var(--neon),var(--accent),var(--alt1),var(--alt2));
   border-radius:8px;
   cursor:pointer;
   letter-spacing:6px;
   font-weight:700;
   transition:transform .12s ease,filter .12s ease;
   user-select:none;
-  box-shadow:0 0 10px var(--neon), 0 0 25px var(--accent);
+  box-shadow:0 0 10px var(--neon), 0 0 25px var(--accent), 0 0 15px var(--alt1), 0 0 20px var(--alt2);
   animation: glowPulse 1.8s ease-in-out infinite alternate;
 }
 .enter-btn:active{
@@ -71,13 +73,13 @@ html,body{
   filter:brightness(0.9);
 }
 @keyframes glowPulse {
-  from {box-shadow:0 0 8px var(--neon), 0 0 18px var(--accent);}
-  to {box-shadow:0 0 22px var(--neon), 0 0 38px var(--accent);}
+  from {box-shadow:0 0 8px var(--neon),0 0 18px var(--accent),0 0 12px var(--alt1),0 0 15px var(--alt2);}
+  to {box-shadow:0 0 22px var(--neon),0 0 38px var(--accent),0 0 25px var(--alt1),0 0 28px var(--alt2);}
 }
 .hint {
   margin-top:8px;
   font-size:13px;
-  color:#7AFF7A;
+  color:#FF77FF;
   opacity:0.85;
 }
 </style>
