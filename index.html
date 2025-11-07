@@ -5,130 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Access Portal</title>
   <style>
-    /* ========== COLORS ========== */
+    /* Basic cyberpunk terminal style */
     :root {
       --bg: #020202;
-      --primary: #ff00ff;   /* Neon Magenta */
-      --green: #39ff14;     /* Neon Green */
-      --blue: #00ffff;      /* Neon Blue */
-      --purple: #9b30ff;    /* Neon Purple */
-      --text: #ffffff;
+      --neon: #39ff14; /* original green */
+      --accent: #00ffd0;
     }
 
-    /* ========== BODY ========== */
     body {
       margin: 0;
-      padding: 0;
       font-family: 'Share Tech Mono', monospace;
       background-color: var(--bg);
-      color: var(--text);
+      color: var(--neon);
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
       height: 100vh;
-      overflow: hidden;
-    }
-
-    /* ========== CONTAINER ========== */
-    .portal-container {
       text-align: center;
     }
 
-    /* ========== ENTER BUTTON ========== */
-    .enter-btn {
-      display: inline-block;
-      padding: 20px 40px;
-      margin-top: 30px;
-      font-size: 1.5rem;
-      color: var(--primary);
-      border: 2px solid var(--primary);
-      text-decoration: none;
-      position: relative;
+    h1 {
+      font-size: 2em;
+      margin-bottom: 1em;
+    }
+
+    button {
+      padding: 1em 2em;
+      font-size: 1.2em;
+      color: var(--bg);
+      background-color: var(--neon);
+      border: none;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: 0.3s;
     }
 
-    /* Neon glow */
-    .enter-btn::before {
-      content: '';
-      position: absolute;
-      top: -5px; left: -5px; bottom: -5px; right: -5px;
-      background: linear-gradient(45deg, var(--primary), var(--green), var(--blue), var(--purple));
-      z-index: -1;
-      filter: blur(10px);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .enter-btn:hover::before {
-      opacity: 1;
-    }
-
-    /* Glitch text effect */
-    .glitch {
-      position: relative;
-      color: var(--primary);
-      font-size: 2rem;
-      display: inline-block;
-    }
-
-    .glitch::before,
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      clip: rect(0, 0, 0, 0);
-    }
-
-    .glitch::before {
-      animation: glitchTop 1s infinite linear alternate-reverse;
-      color: var(--green);
-    }
-
-    .glitch::after {
-      animation: glitchBottom 1s infinite linear alternate-reverse;
-      color: var(--blue);
-    }
-
-    @keyframes glitchTop {
-      0% { clip: rect(0, 9999px, 5px, 0); transform: translate(-2px, -2px); }
-      20% { clip: rect(2px, 9999px, 10px, 0); transform: translate(2px, 2px); }
-      40% { clip: rect(5px, 9999px, 15px, 0); transform: translate(-2px, 2px); }
-      60% { clip: rect(10px, 9999px, 20px, 0); transform: translate(2px, -2px); }
-      80% { clip: rect(15px, 9999px, 25px, 0); transform: translate(-1px, 1px); }
-      100% { clip: rect(0, 9999px, 5px, 0); transform: translate(0, 0); }
-    }
-
-    @keyframes glitchBottom {
-      0% { clip: rect(10px, 9999px, 15px, 0); transform: translate(2px, 2px); }
-      20% { clip: rect(15px, 9999px, 20px, 0); transform: translate(-2px, -2px); }
-      40% { clip: rect(5px, 9999px, 10px, 0); transform: translate(2px, -1px); }
-      60% { clip: rect(0px, 9999px, 5px, 0); transform: translate(-1px, 2px); }
-      80% { clip: rect(5px, 9999px, 15px, 0); transform: translate(1px, -1px); }
-      100% { clip: rect(10px, 9999px, 15px, 0); transform: translate(0, 0); }
+    button:hover {
+      background-color: var(--accent);
+      color: var(--bg);
     }
   </style>
 </head>
 <body>
-  <div class="portal-container">
-    <div class="glitch" data-text="ACCESS PORTAL">ACCESS PORTAL</div>
-    <a class="enter-btn" id="enterBtn">ENTER</a>
-  </div>
+  <h1>ACCESS PORTAL</h1>
+  <p>Welcome, Operator. Click ENTER to continue.</p>
+  <button id="enterButton">ENTER</button>
 
   <script>
-    // Redirect configuration
     const CARRD_URL = "https://teikkuvt.carrd.co/";
     const AUTO_ENTER_SECONDS = 6;
 
-    const btn = document.getElementById('enterBtn');
+    const btn = document.getElementById("enterButton");
 
-    // Click to redirect
-    btn.addEventListener('click', () => {
+    btn.addEventListener("click", () => {
       window.location.href = CARRD_URL;
     });
 
-    // Auto-redirect countdown
     if (AUTO_ENTER_SECONDS > 0) {
       setTimeout(() => {
         window.location.href = CARRD_URL;
